@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="#ff5e00"
+    android:orientation="horizontal"
+    >
+
+    <LinearLayout
+        android:id="@+id/layoutSitio"
+        android:layout_width="6dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/imageButtonSitio"
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:scaleX="0.9"
+            android:scaleY="0.9"
+            android:src="@drawable/billetera" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutTipo"
+        android:layout_width="4dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/imageButtonTipo"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:scaleX="0.9"
+            android:scaleY="0.9"
+            android:src="@drawable/pagar" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutEquipo"
+        android:layout_width="13dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/imageButtonEquipo"
+            android:layout_width="104dp"
+            android:layout_height="45dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:scaleX="0.9"
+            android:scaleY="0.9"
+            android:src="@drawable/resumen" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutHistorial"
+        android:layout_width="9dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/imageButtonHistorial"
+            android:layout_width="100dp"
+            android:layout_height="46dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:scaleX="0.9"
+            android:scaleY="0.9"
+            android:src="@drawable/estadistica" />
+
+    </LinearLayout>
+
+</LinearLayout>
