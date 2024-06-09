@@ -2,9 +2,9 @@ package com.example.lab6.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,8 +14,11 @@ import com.example.lab6.Adapter.EgresoAdapter;
 import com.example.lab6.Adapter.IngresoAdapter;
 import com.example.lab6.Entity.Egreso;
 import com.example.lab6.Entity.Ingreso;
+import com.example.lab6.MainActivity;
 import com.example.lab6.R;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -31,6 +34,8 @@ public class EgresosActivity extends AppCompatActivity {
     FirebaseFirestore db;
     List<Egreso> datalist = new ArrayList<>();
     private ConstraintLayout fab;
+    FirebaseUser user;
+    String correo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,17 @@ public class EgresosActivity extends AppCompatActivity {
         //BD
 
         db = FirebaseFirestore.getInstance();
+
+        //Obteneindo info del usuario
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            Intent intent1 = new Intent(EgresosActivity.this, MainActivity.class);
+            startActivity(intent1);
+            finish();
+        }else{
+            correo = user.getEmail();
+            Log.d("mensajeLogin", correo);
+        }
 
         datalist = new ArrayList<>();
 

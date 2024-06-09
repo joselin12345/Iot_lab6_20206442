@@ -11,11 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.lab6.MainActivity;
 import com.example.lab6.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Navegador extends Fragment {
 
     private ImageButton buttonSitio, buttonTipo, buttonEquipo, buttonHistorial;
+
+    FirebaseAuth mAuth;
+    FirebaseUser user;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.navegador, container, false);
@@ -87,7 +93,9 @@ public class Navegador extends Fragment {
         if (isHistorial) {
             buttonHistorial.setScaleX(0.8f);
             buttonHistorial.setScaleY(0.8f);
-            Intent intent = new Intent(getActivity(), EstadisticaActivity.class);
+
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
         }
 

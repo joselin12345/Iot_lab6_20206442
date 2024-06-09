@@ -8,13 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.lab6.MainActivity;
 import com.example.lab6.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -29,11 +30,12 @@ public class DetallesActivity extends AppCompatActivity {
     ConstraintLayout buttonBorrarEq;
     ConstraintLayout buttonEditarEq;
     FirebaseFirestore db;
+    FirebaseUser user;
+    String correo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.detalles);
 
         Intent intent = getIntent();
@@ -45,6 +47,18 @@ public class DetallesActivity extends AppCompatActivity {
         String monto =  intent.getStringExtra("monto");
 
         db = FirebaseFirestore.getInstance();
+
+        //Obteneindo info del usuario
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            Intent intent1 = new Intent(DetallesActivity.this, MainActivity.class);
+            startActivity(intent1);
+            finish();
+        }else{
+            correo = user.getEmail();
+            Log.d("mensajeLogin", correo);
+        }
+
         texttitulo = findViewById(R.id.titulo);
         textdescripcion = findViewById(R.id.descripcion);
         textfecha = findViewById(R.id.fecha);

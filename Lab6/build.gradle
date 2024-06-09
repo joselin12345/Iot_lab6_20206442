@@ -1,5 +1,12 @@
 buildscript {
+    ext.kotlin_version = "1.8.10"  // Asegúrate de usar la versión correcta aquí
+    repositories {
+        google()
+        mavenCentral()
+    }
     dependencies {
+        classpath "com.android.tools.build:gradle:7.4.0"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath libs.google.services
     }
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.

@@ -7,13 +7,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.example.lab6.R;
 
-import androidx.activity.EdgeToEdge;
+import com.example.lab6.MainActivity;
+import com.example.lab6.R;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -21,13 +23,25 @@ public class EditarActivity extends AppCompatActivity {
 
     private ConstraintLayout Guardar;
     FirebaseFirestore db;
+    FirebaseUser user;
+    String correo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.editar);
         db = FirebaseFirestore.getInstance();
+
+        //Obteneindo info del usuario
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            Intent intent1 = new Intent(EditarActivity.this, MainActivity.class);
+            startActivity(intent1);
+            finish();
+        }else{
+            correo = user.getEmail();
+            Log.d("mensajeLogin", correo);
+        }
 
         Intent intent = getIntent();
         String tipo = intent.getStringExtra("tipo");

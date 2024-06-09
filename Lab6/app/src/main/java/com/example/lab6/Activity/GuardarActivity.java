@@ -3,19 +3,22 @@ package com.example.lab6.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.lab6.Entity.Egreso;
 import com.example.lab6.Entity.Ingreso;
+import com.example.lab6.MainActivity;
 import com.example.lab6.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class GuardarActivity extends AppCompatActivity {
@@ -29,12 +32,13 @@ public class GuardarActivity extends AppCompatActivity {
     private EditText descripcion;
     private EditText fecha;
     private EditText monto;
+    FirebaseUser user;
+    String correo;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.guardar);
 
         Intent intent = getIntent();
@@ -46,6 +50,18 @@ public class GuardarActivity extends AppCompatActivity {
         //BD
 
         db = FirebaseFirestore.getInstance();
+
+        //Obteneindo info del usuario
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            Intent intent1 = new Intent(GuardarActivity.this, MainActivity.class);
+            startActivity(intent1);
+            finish();
+        }else{
+            correo = user.getEmail();
+            Log.d("mensajeLogin", correo);
+        }
+
         Guardar =  findViewById(R.id.Guardar);
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
