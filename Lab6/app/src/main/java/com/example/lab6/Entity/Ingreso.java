@@ -6,6 +6,15 @@ public class Ingreso {
     private String descripcion;
     private String fecha;
     private String monto;
+    private String correoUsuario;
+
+    public String getCorreoUsuario() {
+        return correoUsuario;
+    }
+
+    public void setCorreoUsuario(String correoUsuario) {
+        this.correoUsuario = correoUsuario;
+    }
 
     public String getTitulo() {
         return titulo;

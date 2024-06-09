@@ -58,8 +58,8 @@ public class EgresosActivity extends AppCompatActivity {
         }else{
             correo = user.getEmail();
             Log.d("mensajeLogin", correo);
-        }
 
+        }
         datalist = new ArrayList<>();
 
         fab = findViewById(R.id.guardar);
@@ -74,6 +74,7 @@ public class EgresosActivity extends AppCompatActivity {
         });
 
         db.collection("egreso")
+                .whereEqualTo("correoUsuario", correo)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override

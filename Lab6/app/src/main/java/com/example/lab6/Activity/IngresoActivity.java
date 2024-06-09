@@ -62,7 +62,9 @@ public class IngresoActivity extends AppCompatActivity {
         }else{
             correo = user.getEmail();
             Log.d("mensajeLogin", correo);
+
         }
+
 
         datalist = new ArrayList<>();
 
@@ -78,6 +80,7 @@ public class IngresoActivity extends AppCompatActivity {
         });
 
         db.collection("ingreso")
+                .whereEqualTo("correoUsuario", correo)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -91,6 +94,8 @@ public class IngresoActivity extends AppCompatActivity {
                         recyclerView.setAdapter(adapter);
                     }
                 });
+
+
 
 
     }

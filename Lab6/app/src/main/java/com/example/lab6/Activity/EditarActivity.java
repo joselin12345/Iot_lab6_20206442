@@ -41,6 +41,7 @@ public class EditarActivity extends AppCompatActivity {
         }else{
             correo = user.getEmail();
             Log.d("mensajeLogin", correo);
+
         }
 
         Intent intent = getIntent();

@@ -60,26 +60,27 @@ public class GuardarActivity extends AppCompatActivity {
         }else{
             correo = user.getEmail();
             Log.d("mensajeLogin", correo);
+
         }
 
         Guardar =  findViewById(R.id.Guardar);
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ConfirmacionPopup(tipo);
+                ConfirmacionPopup(tipo, correo);
             }
         });
 
     }
 
-    private void ConfirmacionPopup(String tipo) {
+    private void ConfirmacionPopup(String tipo, String correo) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("¿Estas seguro de guardar los cambios?");
 
         builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                guardar(tipo);
+                guardar(tipo, correo);
                 dialog.dismiss();
             }
         });
@@ -95,7 +96,7 @@ public class GuardarActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void guardar(String tipo) {
+    private void guardar(String tipo, String correo) {
         titulo = findViewById(R.id.titulo);
         String tituloString = titulo.getText().toString().trim();
 
@@ -119,6 +120,7 @@ public class GuardarActivity extends AppCompatActivity {
             ingreso.setDescripcion(descripcionString);
             ingreso.setFecha(fechaString);
             ingreso.setMonto(montoString);
+            ingreso.setCorreoUsuario(correo);
 
             db.collection(tipo)
                     .add(ingreso)
@@ -138,6 +140,8 @@ public class GuardarActivity extends AppCompatActivity {
             ingreso.setDescripcion(descripcionString);
             ingreso.setFecha(fechaString);
             ingreso.setMonto(montoString);
+            ingreso.setCorreoUsuario(correo);
+
             db.collection(tipo)
                     .add(ingreso)
                     .addOnSuccessListener(unused -> {
