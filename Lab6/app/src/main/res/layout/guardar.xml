@@ -160,7 +160,7 @@
                         android:background="@drawable/search_background"
                         android:ems="10"
                         android:hint="dd/mm/dddd"
-                        android:inputType="date"
+                        android:inputType="text"
                         android:paddingStart="20dp"
                         android:textAlignment="center"
                         android:textSize="14sp"

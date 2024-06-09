@@ -12,6 +12,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Calendar;
+
 public class ResumenActicity extends AppCompatActivity {
     FirebaseFirestore db;
     FirebaseUser user;
@@ -19,7 +21,7 @@ public class ResumenActicity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista);
+        setContentView(R.layout.resumen);
 
         db = FirebaseFirestore.getInstance();
 
@@ -34,5 +36,7 @@ public class ResumenActicity extends AppCompatActivity {
             Log.d("mensajeLogin", correo);
         }
 
+
     }
+
 }
